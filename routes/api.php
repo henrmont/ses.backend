@@ -32,6 +32,7 @@ Route::group(['middleware' => 'api','prefix' => 'auth'], function ($router) {
 Route::group(['middleware' => 'api', 'prefix' => 'account', 'namespace' => 'App\Http\Controllers'], function ($router) {
 
     Route::post('create', [AccountController::class, 'create']);
+    Route::get('get/{email}', [AccountController::class, 'getAccount']);
 
 });
 
