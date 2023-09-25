@@ -26,4 +26,18 @@ class AccountController extends Controller
             ]);
         }
     }
+
+    public function getAccount($email) {
+        try {
+            $user = User::where('email', $email)->get();
+
+            return response()->json([
+                "data" => $user
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "message" => "Erro no sistema"
+            ]);
+        }
+    }
 }
