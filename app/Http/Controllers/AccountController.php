@@ -40,4 +40,18 @@ class AccountController extends Controller
             ]);
         }
     }
+
+    public function getCollaborators() {
+        try {
+            $collaborators = User::all();
+
+            return response()->json([
+                "data" => $collaborators
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "message" => "Erro no sistema"
+            ]);
+        }
+    }
 }
