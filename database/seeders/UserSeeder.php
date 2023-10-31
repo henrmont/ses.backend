@@ -11,12 +11,14 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::create([
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'password' => Hash::make('123456'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        for ($i = 0; $i < 10; $i++) {
+            User::create([
+                'name' => fake()->name(),
+                'email' => fake()->unique()->safeEmail(),
+                'password' => Hash::make('123456'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

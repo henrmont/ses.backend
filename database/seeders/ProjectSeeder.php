@@ -13,11 +13,13 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        Project::create([
-            'name' => fake()->name(),
-            'description' => fake()->paragraph(),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        for ($i = 0; $i < 10; $i++) {
+            Project::create([
+                'name' => fake()->name(),
+                'description' => fake()->paragraph(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }

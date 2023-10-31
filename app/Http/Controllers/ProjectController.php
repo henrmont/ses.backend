@@ -72,26 +72,6 @@ class ProjectController extends Controller
         }
     }
 
-    public function linksUpdate(Request $request) {
-        try {
-            $project = Project::find($request->id);
-
-            $project->url_homologation = $request->url_homologation;
-            $project->url_production = $request->url_production;
-            $project->url_git = $request->url_git;
-
-            $project->save();
-
-            return response()->json([
-                "message" => "Links do projeto atualizado com sucesso"
-            ]);
-        } catch (Exception $e) {
-            return response()->json([
-                "message" => "Erro no sistema"
-            ]);
-        }
-    }
-
     public function logoUpdate(Request $request) {
         try {
             $project = Project::find($request->id);

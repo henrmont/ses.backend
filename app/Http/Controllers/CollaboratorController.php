@@ -12,9 +12,7 @@ class CollaboratorController extends Controller
 
     public function getCollaborators($id) {
         try {
-            $collaborators = User::with('projects')->whereHas('projects',function($q) use ($id) {
-                $q->where('project_id', $id);
-            })->get();
+            $collaborators = Collaborator::with('user')->where('project_id', $id)->get();
 
             return response()->json([
                 "data" => $collaborators
@@ -28,7 +26,7 @@ class CollaboratorController extends Controller
 
     public function getAvailableCollaborators($id) {
         try {
-            $collaborators = User::with('projects')->whereDoesntHave('projects',function($q) use ($id) {
+            $collaborators = User::with('collaborator')->whereDoesntHave('collaborator',function($q) use ($id) {
                 $q->where('project_id', $id);
             })->get();
 
@@ -44,7 +42,7 @@ class CollaboratorController extends Controller
 
     public function deleteCollaborator($id) {
         try {
-            $collaborator = Collaborator::where('user_id',$id)->delete();
+            $collaborator = Collaborator::find($id)->delete();
 
             return response()->json([
                 "message" => "Colaborador excluído do projeto"

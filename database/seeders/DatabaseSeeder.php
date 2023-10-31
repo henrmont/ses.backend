@@ -24,16 +24,11 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        for ($i = 0; $i < 10; $i++) {
-            $this->call(UserSeeder::class);
-        }
-
-        for ($i = 0; $i < 10; $i++) {
-            $this->call(ProjectSeeder::class);
-        }
-
+        $this->call(UserSeeder::class);
+        $this->call(ProjectSeeder::class);
         $this->call(CollaboratorSeeder::class);
         $this->call(NotificationSeeder::class);
+        $this->call(LinkSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

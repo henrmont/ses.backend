@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CollaboratorController;
+use App\Http\Controllers\LinkController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Http\Request;
@@ -46,7 +47,6 @@ Route::group(['middleware' => 'api', 'prefix' => 'project', 'namespace' => 'App\
     Route::get('get/all', [ProjectController::class, 'getAll']);
     Route::get('get/{id}', [ProjectController::class, 'get']);
     Route::post('update', [ProjectController::class, 'update']);
-    Route::post('links/update', [ProjectController::class, 'linksUpdate']);
     Route::post('logo/update', [ProjectController::class, 'logoUpdate']);
 
 });
@@ -64,5 +64,15 @@ Route::group(['middleware' => 'api', 'prefix' => 'notification', 'namespace' => 
 
     Route::get('get/{id}', [NotificationController::class, 'getNotifications']);
     Route::get('get/all/{id}', [NotificationController::class, 'getAllNotifications']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'link', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::post('add', [LinkController::class, 'addLink']);
+    Route::get('get/{id}', [LinkController::class, 'getLinks']);
+    Route::delete('delete/{id}', [LinkController::class, 'deleteLink']);
+
+    // Route::get('get/all/{id}', [NotificationController::class, 'getAllNotifications']);
 
 });

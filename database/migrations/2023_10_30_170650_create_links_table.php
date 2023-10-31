@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('links', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->integer('project_id');
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->string('url');
             $table->string('description');
-            $table->text('logo')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('links');
     }
 };
