@@ -6,6 +6,7 @@ use App\Http\Controllers\CollaboratorController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -74,5 +75,19 @@ Route::group(['middleware' => 'api', 'prefix' => 'link', 'namespace' => 'App\Htt
     Route::delete('delete/{id}', [LinkController::class, 'deleteLink']);
 
     // Route::get('get/all/{id}', [NotificationController::class, 'getAllNotifications']);
+
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'task', 'namespace' => 'App\Http\Controllers'], function ($router) {
+
+    Route::get('get/all', [TaskController::class, 'getAll']);
+    Route::get('get/task/{id}', [TaskController::class, 'getTask']);
+    Route::get('get/{board}', [TaskController::class, 'getBoardTasks']);
+    Route::post('change/board/{board}', [TaskController::class, 'changeBoard']);
+    Route::post('new/{board}', [TaskController::class, 'newTask']);
+    Route::delete('delete/{id}', [TaskController::class, 'deleteTask']);
+    Route::patch('edit', [TaskController::class, 'editTask']);
+
+
 
 });

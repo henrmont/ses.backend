@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CollaboratorSeeder::class);
         $this->call(NotificationSeeder::class);
         $this->call(LinkSeeder::class);
+        $this->call(TaskSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
